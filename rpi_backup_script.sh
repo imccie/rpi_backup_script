@@ -41,9 +41,9 @@ let size+=600
 # Create the disk and partition it
 echo "Creating image file for Raspberry Pi2 FileSystem Backup!"
 dd if=/dev/zero of=${basedir}/rpi2_backup.img bs=1M count=$size
-parted rpi2_backup.img --script -- mklabel msdos
-parted rpi2_backup.img --script -- mkpart primary fat32 0 64
-parted rpi2_backup.img --script -- mkpart primary ext4 64 -1
+parted ${basedir}/rpi2_backup.img --script -- mklabel msdos
+parted ${basedir}/rpi2_backup.img --script -- mkpart primary fat32 0 64
+parted ${basedir}/rpi2_backup.img --script -- mkpart primary ext4 64 -1
 
 # Set the partition variables
 loopdevice=`losetup -f --show ${basedir}/rpi2_backup.img`
